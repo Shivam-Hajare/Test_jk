@@ -1,0 +1,50 @@
+static int majorityElement(int A[], int N)
+{
+    // Step 1: Sort the input array
+    Arrays.sort(A);
+    
+    // Step 2: Initialize variables for counting and candidate element
+    int maxCount = 0;
+    int count = 1;
+    int candidate = A[0];
+    
+    // Step 3: Iterate through the sorted array, counting the occurrences of each element
+    for(int i = 1; i < N; i++) 
+    {
+        if(A[i] == A[i-1]) 
+        {
+            // If the current element is the same as the previous element, increment the count
+            count++;
+        } else
+         {
+            // If the current element is different from the previous element,
+            // check if the count of the previous candidate is greater than the current max count.
+            // If so, update the max count and candidate element.
+            if(count > maxCount) {
+                maxCount = count;
+                candidate = A[i-1];
+            }
+            // Reset the count for the new candidate element
+            count = 1;
+        }
+    }
+    
+    // Step 4: Check the count of the final candidate element
+    // (which could be the last element in the array)
+    if(count > maxCount) 
+    {
+        maxCount = count;
+        candidate = A[N-1];
+    }
+    
+    // Step 5: Check if the max count is greater than N/2
+    if(maxCount > N/2) 
+    {
+        // If so, return the candidate element as the majority element
+        return candidate;
+    } else 
+    {
+        // If not, there is no majority element in the array
+        return -1;
+    }
+}
