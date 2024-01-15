@@ -6,7 +6,7 @@ class AddToArrayFormOfInt{
         List<Integer> result=new ArrayList<>();
         int k=806;
         result= addToArrayForm(num,k);
-        result.forEach(p->System.out.print(p));
+        result.forEach(p->System.out.print(p+" shivam"));
 
     }
 
